@@ -1,0 +1,31 @@
+<h1><%= @group.title %></h1>
+
+<%= render "groups/group_navigation", group: @group %>
+
+<h2>Members</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Remove From Group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @memberships.each do |membership| %>
+      <tr>
+        <th><%= membership.user.email %></th>
+        <th>
+          <% if membership.admin? %>
+            <span class="glyphicon glyphicon-ok"></span>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to group_membership_path(group_id: membership.group_id, id: membership.id), method: :delete, data: { confirm: 'Are you sure?' }  do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
