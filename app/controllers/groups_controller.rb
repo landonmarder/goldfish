@@ -1,8 +1,10 @@
 class GroupsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, except: :index
 
   def index
-    @groups = current_user.groups
+    if current_user
+      @groups = current_user.groups
+    end
   end
 
   def show
