@@ -8,7 +8,6 @@
         <th># of Members</th>
         <th>Pending Activites</th>
         <th>Activities Completed</th>
-        <th>Percent Activities</th>
       </tr>
     </thead>
     <tbody>
@@ -16,9 +15,8 @@
         <tr>
           <th><%= link_to group.title, group_path(group) %></th>
           <th><%= group.memberships.count %></th>
-          <th>8</th>
-          <th>12</th>
-          <th>60%</th>
+          <th><%= group.group_activities.where(completed_at: nil).count %></th>
+          <th><%= group.group_activities.where.not(completed_at: nil).count %></th>
         </tr>
       <% end %>
     </tbody>
