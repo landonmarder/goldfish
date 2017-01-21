@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   def show
     @group = current_user.groups.find_by(id: params[:id])
 
-    unless @group
+    unless current_user.groups.include?(@group)
       redirect_to groups_path
     end
   end

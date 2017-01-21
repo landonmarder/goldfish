@@ -1,29 +1,3 @@
 <h1><%= @group.title %></h1>
 
-<h2>Members</h2>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Admin</th>
-      <th>Remove From Group</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @group.users.each do |user| %>
-      <tr>
-        <th><%= user.email %></th>
-        <th>
-          <% if user.membership_for(@group).admin? %>
-            <span class="glyphicon glyphicon-ok"></span>
-          <% end %>
-        </th>
-        <th>
-          <%= link_to "#", method: :delete, data: { confirm: 'Are you sure?' }  do %>
-            <span class="glyphicon glyphicon-trash"></span>
-          <% end %>
-        </th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "group_navigation", group: @group %>
