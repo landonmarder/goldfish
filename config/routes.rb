@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:index, :show] do
     resources :memberships, only: [:index, :destroy]
-    resources :group_activities, only: [:index]
+    resources :group_activities, only: [:index, :create]
   end
 end

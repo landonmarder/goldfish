@@ -15,14 +15,16 @@
   </thead>
   <tbody>
     <% @group_activities.each do |group_activity| %>
-      <tr>
+      <tr class='<%= "completed-table-row" if group_activity.completed_at %>'>
         <th><%= group_activity.title %></th>
         <th><%= group_activity.description %></th>
         <th><%= l group_activity.created_at, format: :short %></th>
         <th><%= l group_activity.completed_at, format: :short if group_activity.completed_at %></th>
         <th>
           <% if group_activity.completed_at %>
-            Redo
+            <%= link_to group_group_activities_path(group_id: @group.id, group_activity: { activity_id: group_activity.activity_id }), method: :post, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-repeat"></span>
+            <% end %>
           <% else %>
             Remove
           <% end %>

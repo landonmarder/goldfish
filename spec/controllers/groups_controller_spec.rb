@@ -10,8 +10,8 @@ RSpec.describe GroupsController do
         get :index
       end
 
-      it "should redirect to the home page" do
-        expect(response).to redirect_to(root_path)
+      it "should not assign any groups" do
+        expect(assigns(:groups)).to be_nil
       end
     end
 

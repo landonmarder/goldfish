@@ -3,4 +3,6 @@ class GroupActivity < ActiveRecord::Base
   belongs_to :activity, inverse_of: :group_activities
 
   delegate :title, :description, to: :activity
+
+  default_scope { order(id: :desc) }
 end
