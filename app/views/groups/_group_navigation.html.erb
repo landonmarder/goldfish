@@ -1,5 +1,5 @@
 <div class="btn-group" role="group">
   <%= link_to "Home", group_path(group), class: "btn btn-default" %>
-  <%= link_to "Activities", "#", class: "btn btn-default" %>
+  <%= link_to "Activities", group_group_activities_path(group), class: "btn btn-default" %>
   <%= link_to "Members", group_memberships_path(group), class: "btn btn-default" %>
 </div>

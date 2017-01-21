@@ -1,0 +1,33 @@
+<h1><%= @group.title %></h1>
+
+<%= render "groups/group_navigation", group: @group %>
+
+<h2>Activities</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Activity</th>
+      <th>Description</th>
+      <th>Suggested At</th>
+      <th>Completed At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @group_activities.each do |group_activity| %>
+      <tr>
+        <th><%= group_activity.title %></th>
+        <th><%= group_activity.description %></th>
+        <th><%= group_activity.created_at %></th>
+        <th><%= group_activity.completed_at %></th>
+        <th>
+          <% if group_activity.completed_at %>
+            Redo
+          <% else %>
+            Remove
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
