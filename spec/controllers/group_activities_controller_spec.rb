@@ -35,7 +35,7 @@ RSpec.describe GroupActivitiesController do
     end
   end
 
-  describe "#POST" do
+  describe "#post" do
     let(:user) { create(:user) }
 
     before do
@@ -62,6 +62,44 @@ RSpec.describe GroupActivitiesController do
             post :create, group_id: group.id, group_activity: { activity_id: activity.id }
           }.to change { group.group_activities.count }.by(0)
         end
+      end
+    end
+  end
+
+  describe "#put" do
+    let(:user) { build(:user) }
+    let!(:group_activity) { create(:group_activity) }
+    let(:group) { group_activity.group }
+
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
+    context "the user belongs to the group" do
+      before do
+        put :update, group_id: group.id, id: group_activity.id, group_activity: { completed_at: Time.now.to_s }
+      end
+
+      it "should update the completed at" do
+        expect(group_activity.reload.completed_at).to be_present
+      end
+    end
+  end
+
+  describe "#destroy" do
+    let(:user) { build(:user) }
+    let!(:group_activity) { create(:group_activity) }
+    let(:group) { group_activity.group }
+
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
+    context "the user belongs to the group" do
+      it "should delete the group activity" do
+        expect {
+          delete :destroy, group_id: group.id, id: group_activity.id
+        }.to change { group.group_activities.count }.by(-1)
       end
     end
   end

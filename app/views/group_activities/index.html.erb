@@ -26,7 +26,13 @@
               <span class="glyphicon glyphicon-repeat"></span>
             <% end %>
           <% else %>
-            Remove
+            <%= link_to group_group_activity_path(group_id: @group.id, id: group_activity.id, group_activity: { completed_at: Time.now }), method: :put, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% end %>
+          <% end %>
+
+          <%= link_to group_group_activity_path(group_id: @group.id, id: group_activity.id), method: :destroy, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
           <% end %>
         </th>
       </tr>

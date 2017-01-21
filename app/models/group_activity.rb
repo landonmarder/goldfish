@@ -4,5 +4,5 @@ class GroupActivity < ActiveRecord::Base
 
   delegate :title, :description, to: :activity
 
-  default_scope { order(id: :desc) }
+  default_scope { order(completed_at: :desc).order(id: :desc) }
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :group_activities do
+  factory :group_activity do
     activity
     group
   end
