@@ -8,8 +8,8 @@
     <tr>
       <th>Activity</th>
       <th>Description</th>
-      <th>Suggested At</th>
-      <th>Completed At</th>
+      <th>Suggested</th>
+      <th>Completed</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -18,8 +18,8 @@
       <tr>
         <th><%= group_activity.title %></th>
         <th><%= group_activity.description %></th>
-        <th><%= group_activity.created_at %></th>
-        <th><%= group_activity.completed_at %></th>
+        <th><%= l group_activity.created_at, format: :short %></th>
+        <th><%= l group_activity.completed_at, format: :short if group_activity.completed_at %></th>
         <th>
           <% if group_activity.completed_at %>
             Redo
