@@ -46,6 +46,7 @@ class GroupActivitiesController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:group_id])
     group_activity = GroupActivity.find(params[:id])
 
     unless current_user.groups.include?(@group)
@@ -53,7 +54,7 @@ class GroupActivitiesController < ApplicationController
     end
 
     group_activity.destroy!
-    redirect_to group_memberships_path(group_id: params[:group_id])
+    redirect_to group_group_activities_path(group_id: params[:group_id])
   end
 
   private

@@ -31,7 +31,7 @@
             <% end %>
           <% end %>
 
-          <%= link_to group_group_activity_path(group_id: @group.id, id: group_activity.id), method: :destroy, data: { confirm: 'Are you sure?' } do %>
+          <%= link_to group_group_activity_path(group_id: @group.id, id: group_activity.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
             <span class="glyphicon glyphicon-trash"></span>
           <% end %>
         </th>
