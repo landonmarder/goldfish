@@ -34,4 +34,22 @@ RSpec.describe MembershipsController do
       end
     end
   end
+
+  describe "#destroy" do
+    let(:user) { build(:user) }
+    let!(:membership) { create(:membership, inactive_at: inactive_at) }
+
+    context "membership is active" do
+      let(:inactive_at) { nil }
+
+      before do
+        allow(controller).to receive(:current_user).and_return(user)
+        delete :destroy, group_id: membership.group.id, id: membership.id
+      end
+
+      it "should set the inactive at of the membership" do
+        expect(membership.reload.inactive_at).to be_present
+      end
+    end
+  end
 end

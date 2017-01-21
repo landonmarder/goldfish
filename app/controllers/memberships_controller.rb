@@ -10,4 +10,12 @@ class MembershipsController < ApplicationController
 
     @memberships = @group.memberships.includes(:user)
   end
+
+  def destroy
+    membership = Membership.find(params[:id])
+    membership.inactive_at ||= Time.now
+    membership.save
+
+    redirect_to group_memberships_path(group_id: params[:group_id])
+  end
 end

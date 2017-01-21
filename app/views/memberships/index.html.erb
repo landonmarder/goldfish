@@ -21,7 +21,7 @@
           <% end %>
         </th>
         <th>
-          <%= link_to "#", method: :delete, data: { confirm: 'Are you sure?' }  do %>
+          <%= link_to group_membership_path(group_id: membership.group_id, id: membership.id), method: :delete, data: { confirm: 'Are you sure?' }  do %>
             <span class="glyphicon glyphicon-trash"></span>
           <% end %>
         </th>
